@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+
+.typing-effect{
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink{
+    50%{
+        color: gray;
+        border-color: black;
+    }
+}
