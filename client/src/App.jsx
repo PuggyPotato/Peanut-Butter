@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
 
@@ -10,6 +10,9 @@ function App(){
   const [timeCount,setTimeCount] = useState(0);
   const [dialogueCount,setDialogueCount] = useState(0);
   const [afterOpeningDialogue,setAfterOpeningDialogue] = useState(false);
+  const [timerStarted,setTimerStarted] = useState(false);
+  const timeStarted = useRef(false)
+  const afterDialogue = useRef(false)
 
   const [userTurn,setUserTurn] = useState(false);
   const totalTime = 60;
@@ -19,21 +22,32 @@ function App(){
                            "Narrator:Remember....Provide Accurate Instructions..."]
   const [dialogue,setDialogue] = useState(openingDialogue[0]);
   const [timeLeft,setTimeLeft] = useState("60s");
-  
+  useEffect(() =>{
+    document.addEventListener("keydown",handlekeydown)
+  })
+
+    
 
   function continueDialogue(event){
-    event.preventDefault();
-    if(!afterOpeningDialogue){
+    if(dialogueCount <=3){
       setDialogueCount(dialogueCount + 1)
       console.log(dialogueCount)
       setDialogue(openingDialogue[dialogueCount + 1])
       if(dialogueCount === 3){
-        setAfterOpeningDialogue(true);
         setDialogue("");
         setUserTurn(true);
-        startTimer();
+        if(timeStarted.current == false){
+          startTimer();
+          timeStarted.current = true;
+        }
+        return;
+        
       }
     }
+    else{
+      returnAnswer();
+    }
+    
   }
 
   function submitInstruction(){
@@ -41,6 +55,24 @@ function App(){
     setUserTurn(false);
   }
 
+  function handlekeydown(event){
+    if(event.key == "Enter"){
+      if(dialogueCount <= 3 && userTurn == false){
+        continueDialogue();
+        return
+      }
+      submitInstruction();
+      console.log("Test");
+    }
+    
+  }
+
+  function returnAnswer(){
+
+    setUserTurn(true)
+  }
+  
+  
 
   function startTimer(){
     let i = 0;
@@ -54,7 +86,7 @@ function App(){
         }
      }, 1000);
   
-  }
+    }
 
 
 
@@ -62,7 +94,7 @@ function App(){
     <>
       <div className="">
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
-              <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 text-2xl px-2 overflow-y-hidden ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
+              <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 text-2xl px-2 overflow-y-hidden bg-slate-300 ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
                         value={userInput} onChange={(e) =>setUserInput(e.target.value)}
                         placeholder="Enter Your Instructions..."
                         maxLength={300}>
