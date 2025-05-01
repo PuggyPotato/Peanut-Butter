@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import {useEventListener} from "usehooks-ts"
 
 
 
@@ -22,9 +23,8 @@ function App(){
                            "Narrator:Remember....Provide Accurate Instructions..."]
   const [dialogue,setDialogue] = useState(openingDialogue[0]);
   const [timeLeft,setTimeLeft] = useState("60s");
-  useEffect(() =>{
-    document.addEventListener("keydown",handlekeydown)
-  })
+
+  useEventListener("keydown",handlekeydown)
 
     
 
@@ -36,7 +36,7 @@ function App(){
       if(dialogueCount === 3){
         setDialogue("");
         setUserTurn(true);
-        if(timeStarted.current == false){
+        if(timeStarted.current === false){
           startTimer();
           timeStarted.current = true;
         }
@@ -61,8 +61,10 @@ function App(){
         continueDialogue();
         return
       }
+      if(userTurn == true){
       submitInstruction();
       console.log("Test");
+      }
     }
     
   }
