@@ -44,9 +44,6 @@ function App(){
         
       }
     }
-    else{
-      returnAnswer();
-    }
     
   }
 
@@ -65,12 +62,15 @@ function App(){
       submitInstruction();
       console.log("Test");
       }
+      if(userTurn == false){
+        returnAnswer();
+      }
     }
     
   }
 
   function returnAnswer(){
-
+    console.log("TEST")
     setUserTurn(true)
   }
   
