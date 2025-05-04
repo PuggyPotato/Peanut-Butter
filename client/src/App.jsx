@@ -8,13 +8,8 @@ import {useEventListener} from "usehooks-ts"
 function App(){
 
   const [userInput,setUserInput] = useState("");
-  const [timeCount,setTimeCount] = useState(0);
   const [dialogueCount,setDialogueCount] = useState(0);
-  const [afterOpeningDialogue,setAfterOpeningDialogue] = useState(false);
-  const [timerStarted,setTimerStarted] = useState(false);
   const timeStarted = useRef(false)
-  const afterDialogue = useRef(false)
-
   const [userTurn,setUserTurn] = useState(false);
   const totalTime = 60;
   const openingDialogue = ["Steve:Im Starving.....I Wanna Eat.....",
@@ -23,31 +18,74 @@ function App(){
                            "Narrator:Remember....Provide Accurate Instructions..."]
   const [dialogue,setDialogue] = useState(openingDialogue[0]);
   const [timeLeft,setTimeLeft] = useState("60s");
+  const [phase1,setPhase1] = useState(false)
+  const [phase2,setPhase2] = useState(false)
+  const [phase3,setPhase3] = useState(false)
+  const [phase4,setPhase4] = useState(false)
+  const [phase5,setPhase5] = useState(false)
+  const [phase6,setPhase6] = useState(false)
+
+  const instruction1 = "take the bread out of the bag"
+  const instruction2 = "put the bread on the table"
+  const instruction3 = "open the lid of the peanut butter"
+  const instruction4 = "take the knife from the table from the back"
+  const instruction5 = "use the knife to scoop the peanut butter from the jar"
+  const instruction6 = "spread the butter on the knife onto the bread"
+  const instruction7 = "eat the bread"
 
   useEventListener("keydown",handlekeydown)
 
     
 
   function continueDialogue(event){
+    console.log(dialogueCount)
     if(dialogueCount <=3){
-      setDialogueCount(dialogueCount + 1)
-      console.log(dialogueCount)
-      setDialogue(openingDialogue[dialogueCount + 1])
+      let newCount = dialogueCount + 1;
+      setDialogueCount(newCount);
+      console.log(dialogueCount);
+      setDialogue(openingDialogue[newCount]);
       if(dialogueCount === 3){
         setDialogue("");
         setUserTurn(true);
         if(timeStarted.current === false){
           startTimer();
           timeStarted.current = true;
+          return;
         }
-        return;
         
       }
     }
+    returnAnswer()
+    
     
   }
 
+
+
   function submitInstruction(){
+    setUserInput(userInput.toLowerCase());
+    if(userInput == instruction1){
+      setPhase1(true);
+    }
+    if(userInput == instruction2 && phase1 == true){
+      setPhase2(true);
+    }
+    if(userInput == instruction3 && phase2 == true){
+      setPhase3(true);
+    }
+    if(userInput == instruction4 && phase3 == true){
+      setPhase4(true);
+    }
+    if(userInput == instruction5 && phase4 == true){
+      setPhase5(true);
+    }
+    if(userInput == instruction6 && phase5 == true){
+      setPhase6(true);
+    }
+    if(userInput == instruction7 && phase6 == true){
+      alert("Congrats! Steve Is No Longer Hungry");
+      clearInterval(interval)
+    }
     setUserInput("")
     setUserTurn(false);
   }
@@ -71,7 +109,8 @@ function App(){
 
   function returnAnswer(){
     console.log("TEST")
-    setUserTurn(true)
+    let value = true;
+    setUserTurn(value)
   }
   
   
@@ -79,9 +118,11 @@ function App(){
   function startTimer(){
     let i = 0;
      const interval = setInterval(() => {
+      if(userInput == instruction7 && phase6 == true){
+        clearInterval(interval)
+      }
         i++
-        console.log(i)
-        setTimeLeft(60 - i + "s")
+        setTimeLeft(60 - i + "s");
         if(i == totalTime){
           clearInterval(interval);
           alert("Steve Starved To Death!");
@@ -89,6 +130,8 @@ function App(){
      }, 1000);
   
     }
+
+  
 
 
 
