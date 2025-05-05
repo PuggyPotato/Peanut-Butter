@@ -31,7 +31,7 @@ function App(){
   const instruction4 = "take the knife from the table from the back"
   const instruction5 = "use the knife to scoop the peanut butter from the jar"
   const instruction6 = "spread the butter on the knife onto the bread"
-  const instruction7 = "eat the bread"
+  const instruction7 = "eat"
 
   useEventListener("keydown",handlekeydown)
 
@@ -55,7 +55,9 @@ function App(){
         
       }
     }
-    returnAnswer()
+    else{
+      returnAnswer();
+    }
     
     
   }
@@ -64,27 +66,35 @@ function App(){
 
   function submitInstruction(){
     setUserInput(userInput.toLowerCase());
-    if(userInput == instruction1){
-      setPhase1(true);
+    if(userInput == "" || null){
+      setDialogue("You Didn't Enter Any Instruction.");
     }
-    if(userInput == instruction2 && phase1 == true){
-      setPhase2(true);
-    }
-    if(userInput == instruction3 && phase2 == true){
-      setPhase3(true);
-    }
-    if(userInput == instruction4 && phase3 == true){
-      setPhase4(true);
-    }
-    if(userInput == instruction5 && phase4 == true){
-      setPhase5(true);
-    }
-    if(userInput == instruction6 && phase5 == true){
-      setPhase6(true);
-    }
-    if(userInput == instruction7 && phase6 == true){
-      alert("Congrats! Steve Is No Longer Hungry");
-      clearInterval(interval)
+    else{
+      if(userInput == instruction1){
+        setPhase1(true);
+        if(userInput == instruction2 && phase1 == true){
+          setPhase2(true);
+          if(userInput == instruction3 && phase2 == true){
+            setPhase3(true);
+            if(userInput == instruction4 && phase3 == true){
+              setPhase4(true);
+              if(userInput == instruction5 && phase4 == true){
+                setPhase5(true);
+                if(userInput == instruction6 && phase5 == true){
+                  setPhase6(true);
+                  if(userInput == instruction7 && phase6 == true){
+                    alert("Congrats! Steve Is No Longer Hungry");
+                    clearInterval(interval)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      else{
+        setDialogue("You Dont Know How To Do That")
+      }
     }
     setUserInput("")
     setUserTurn(false);
@@ -108,6 +118,7 @@ function App(){
   }
 
   function returnAnswer(){
+    setDialogue("")
     console.log("TEST")
     let value = true;
     setUserTurn(value)
