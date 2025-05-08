@@ -17,7 +17,7 @@ function App(){
                            "Narrator:Every Random Command You Give Makes Him Starve More",
                            "Narrator:Remember....Provide Accurate Instructions..."];
   const [dialogue,setDialogue] = useState(openingDialogue[0]);
-  const [timeLeft,setTimeLeft] = useState("60s");
+  const [timeLeft,setTimeLeft] = useState(60);
   const [phase1,setPhase1] = useState(false);
   const [phase2,setPhase2] = useState(false);
   const [phase3,setPhase3] = useState(false);
@@ -135,7 +135,7 @@ function App(){
         clearInterval(interval)
       }
         i++
-        setTimeLeft(60 - i + "s");
+        setTimeLeft(60 - i);
         if(i == totalTime){
           clearInterval(interval);
           alert("Steve Starved To Death!");
@@ -178,7 +178,7 @@ function App(){
           </div>
           <div className="border-2 h-30 w-30 rounded-full absolute top-10 right-20">
               <img src="/clock.png" className="h-30 w-30 rounded-full"></img>
-              <p className="absolute top-32 right-10 text-xl">{timeLeft}</p>
+              <p className={`absolute top-32 right-10 text-xl ${timeLeft <= 10 && "text-red-600"}`}>{timeLeft}s</p>
           </div>
       </div>
     </>
