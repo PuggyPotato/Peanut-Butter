@@ -177,6 +177,7 @@ function App(){
               onClick={continueDialogue}>Click to Continue</button>
           </div>
           <div className="border-2 h-30 w-30 rounded-full absolute top-10 right-20">
+              <img src="/clock.png" className="h-30 w-30 rounded-full"></img>
               <p className="absolute top-32 right-10 text-xl">{timeLeft}</p>
           </div>
       </div>
