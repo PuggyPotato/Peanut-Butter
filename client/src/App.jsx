@@ -25,6 +25,8 @@ function App(){
   const [phase5,setPhase5] = useState(false);
   const [phase6,setPhase6] = useState(false);
   const [phase7,setPhase7] = useState(false);
+  const [shown,setShown] = useState(false);
+  const [won,setWon] = useState(false);
 
   const instruction1 = "take the bread out of the bag";
   const instruction2 = "put the bread on the table";
@@ -91,8 +93,9 @@ function App(){
       }
       if(userInput == instruction7 && phase6 == true){
         setPhase7(true);
-        alert("Congrats! Steve Is No Longer Hungry");
         clearInterval(interval);
+        endScreen()
+        setWon(true);
       }
       else if(userInput != instruction1 && userInput != instruction2 && userInput != instruction3 && userInput != instruction4 && userInput != instruction5 && userInput && instruction6 && userInput != instruction7){
         setDialogue("You Dont Know How To Do That.")
@@ -126,6 +129,9 @@ function App(){
     setUserTurn(value)
   }
   
+  function endScreen(){
+    setShown(true);
+  }
   
 
   function startTimer(){
@@ -138,7 +144,7 @@ function App(){
         setTimeLeft(60 - i);
         if(i == totalTime){
           clearInterval(interval);
-          alert("Steve Starved To Death!");
+          endScreen();
         }
      }, 1000);
   
@@ -150,7 +156,22 @@ function App(){
 
   return(
     <>
-      <div className="">
+      <div className="flex justify-center items-center">
+        <div className={`border-2 h-[80%] w-[80%] 
+                         absolute bg-slate-200 transition-all duration-500 
+                         flex justify-center items-center
+                         z-20 ${shown ? "top-10" : "-top-full"}`}>
+            {won ? 
+            <div>
+              <h1 className="text-6xl">You Won With {timeLeft}s Left!</h1>
+              <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[43%] bg-green-600">Play Again!</button>
+            </div> : 
+            <div>
+              <h1 className="text-6xl">You Lost!</h1>
+              <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[43%] bg-green-600">Play Again!</button>
+            </div>
+              }
+        </div>
         <div className="border-2 absolute top-10 left-[8%] w-[24%] h-[25%]">
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase1}/>{phase1 ? instruction1 : "??????"}</label><br/>
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase2}/>{phase2 ? instruction2 : "??????"}</label><br/>
