@@ -27,6 +27,7 @@ function App(){
   const [phase7,setPhase7] = useState(false);
   const [shown,setShown] = useState(false);
   const [won,setWon] = useState(false);
+  const interval = useRef(null);
 
   const instruction1 = "take the bread out of the bag";
   const instruction2 = "put the bread on the table";
@@ -93,9 +94,9 @@ function App(){
       }
       if(userInput == instruction7 && phase6 == true){
         setPhase7(true);
-        clearInterval(interval);
-        endScreen()
+        endScreen();
         setWon(true);
+        clearInterval(interval.current)
       }
       else if(userInput != instruction1 && userInput != instruction2 && userInput != instruction3 && userInput != instruction4 && userInput != instruction5 && userInput && instruction6 && userInput != instruction7){
         setDialogue("You Dont Know How To Do That.")
@@ -136,15 +137,18 @@ function App(){
 
   function startTimer(){
     let i = 0;
-     const interval = setInterval(() => {
+      interval.current = setInterval(() => {
       if(userInput == instruction7 && phase6 == true){
-        clearInterval(interval)
+        clearInterval(interval.current)
       }
         i++
         setTimeLeft(60 - i);
         if(i == totalTime){
-          clearInterval(interval);
+          clearInterval(interval.current);
           endScreen();
+        }
+        if(phase6 && userInput == instruction7){
+          clearInterval(interval.current)
         }
      }, 1000);
   
@@ -165,6 +169,7 @@ function App(){
             <div>
               <h1 className="text-6xl">You Won With {timeLeft}s Left!</h1>
               <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[43%] bg-green-600">Play Again!</button>
+
             </div> : 
             <div>
               <h1 className="text-6xl">You Lost!</h1>
