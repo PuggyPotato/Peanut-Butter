@@ -70,35 +70,42 @@ function App(){
 
   function submitInstruction(){
     setUserInput(userInput.toLowerCase());
-    if(userInput == "" || null){
+    let lowerUserInput = userInput.toLowerCase();
+    if(lowerUserInput == "" || null){
       setDialogue("You Didn't Enter Any Instruction.");
     }
     else{
-      if(userInput == instruction1){
+      if(lowerUserInput == instruction1){
         setPhase1(true);
       }
-      if(userInput == instruction2 && phase1 == true){
+      if(!phase1 && lowerUserInput == "eat"){
+        setDialogue("You ate the table.")
+      }
+      if(lowerUserInput == instruction2 && phase1 == true){
         setPhase2(true);
       }
-      if(userInput == instruction3 && phase2 == true){
+      if(!phase2 && lowerUserInput == "eat"){
+        setDialogue("You Ate The Bread.You Lost.")
+      }
+      if(lowerUserInput == instruction3 && phase2 == true){
         setPhase3(true);
       }
-      if(userInput == instruction4 && phase3 == true){
+      if(lowerUserInput == instruction4 && phase3 == true){
         setPhase4(true);
       }
-      if(userInput == instruction5 && phase4 == true){
+      if(lowerUserInput == instruction5 && phase4 == true){
         setPhase5(true);
       }
-      if(userInput == instruction6 && phase5 == true){
+      if(lowerUserInput == instruction6 && phase5 == true){
         setPhase6(true);
       }
-      if(userInput == instruction7 && phase6 == true){
+      if(lowerUserInput == instruction7 && phase6 == true){
         setPhase7(true);
         endScreen();
         setWon(true);
         clearInterval(interval.current)
       }
-      else if(userInput != instruction1 && userInput != instruction2 && userInput != instruction3 && userInput != instruction4 && userInput != instruction5 && userInput && instruction6 && userInput != instruction7){
+      else if(lowerUserInput != instruction1 && lowerUserInput != instruction2 && lowerUserInput != instruction3 && lowerUserInput != instruction4 && lowerUserInput != instruction5 && lowerUserInput && instruction6 && lowerUserInput != instruction7){
         setDialogue("You Dont Know How To Do That.")
       }
     }
@@ -166,7 +173,7 @@ function App(){
                          flex justify-center items-center
                          z-20 ${shown ? "top-10" : "-top-full"}`}>
             {won ? 
-            <div>
+            <div className="w-[100%] h-[100%]">
               <h1 className="text-6xl">You Won With {timeLeft}s Left!</h1>
               <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[43%] bg-green-600">Play Again!</button>
 
