@@ -75,17 +75,42 @@ function App(){
       setDialogue("You Didn't Enter Any Instruction.");
     }
     else{
+      if(!phase1 && lowerUserInput != instruction1){
+        if(lowerUserInput == "take the bread"){
+        setDialogue("the bread is inside the bag...You can't take it.")
+        }
+        else if(lowerUserInput == "eat"){
+          setDialogue("You Ate The Table.You Lost.");
+          setWon(false);
+          endScreen();
+
+        }
+        else{
+          setDialogue("You Don't Know How To Do That ")
+        }
+      }
       if(lowerUserInput == instruction1){
         setPhase1(true);
+        setDialogue("You Took The Bread Out Of The Bag.")
       }
-      if(!phase1 && lowerUserInput == "eat"){
-        setDialogue("You ate the table.")
+      if(phase1 && lowerUserInput != instruction2){
+        if(!phase1 && lowerUserInput == "eat"){
+          setDialogue("You ate the Bread.You Lost.")
+          setWon(false);
+          endScreen();
+        }
+        else{
+          setDialogue("You Don't Know How To Do That.")
+        }
       }
       if(lowerUserInput == instruction2 && phase1 == true){
         setPhase2(true);
+        setDialogue("You put the bread on the table.")
       }
-      if(!phase2 && lowerUserInput == "eat"){
+      if(phase1 && !phase2 && lowerUserInput == "eat"){
         setDialogue("You Ate The Bread.You Lost.")
+        setWon(false);
+        endScreen();
       }
       if(lowerUserInput == instruction3 && phase2 == true){
         setPhase3(true);
@@ -104,9 +129,6 @@ function App(){
         endScreen();
         setWon(true);
         clearInterval(interval.current)
-      }
-      else if(lowerUserInput != instruction1 && lowerUserInput != instruction2 && lowerUserInput != instruction3 && lowerUserInput != instruction4 && lowerUserInput != instruction5 && lowerUserInput && instruction6 && lowerUserInput != instruction7){
-        setDialogue("You Dont Know How To Do That.")
       }
     }
     setUserInput("")
