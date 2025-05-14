@@ -75,6 +75,7 @@ function App(){
       setDialogue("You Didn't Enter Any Instruction.");
     }
     else{
+      //Wrong Message At Phase 0
       if(!phase1 && lowerUserInput != instruction1){
         if(lowerUserInput == "take the bread"){
         setDialogue("the bread is inside the bag...You can't take it.")
@@ -89,11 +90,15 @@ function App(){
           setDialogue("You Don't Know How To Do That ")
         }
       }
+      //Correct Message At Phase 1
       if(lowerUserInput == instruction1){
         setPhase1(true);
         setDialogue("You Took The Bread Out Of The Bag.")
       }
+
+
       if(phase1 && lowerUserInput != instruction2){
+        //Message At Phase 1 (Wrong)
         if(!phase1 && lowerUserInput == "eat"){
           setDialogue("You ate the Bread.You Lost.")
           setWon(false);
@@ -103,29 +108,46 @@ function App(){
           setDialogue("You Don't Know How To Do That.")
         }
       }
+
       if(lowerUserInput == instruction2 && phase1 == true){
         setPhase2(true);
         setDialogue("You put the bread on the table.")
       }
-      if(phase1 && !phase2 && lowerUserInput == "eat"){
-        setDialogue("You Ate The Bread.You Lost.")
-        setWon(false);
-        endScreen();
+
+      if(phase2 && lowerUserInput != instruction3){
+        //Message At Phase 2 (Wrong)
       }
       if(lowerUserInput == instruction3 && phase2 == true){
         setPhase3(true);
+        setDialogue("You Opened The Lid Of The Peanut Butter.")
+      }
+      if(phase3 && lowerUserInput != instruction4){
+        //Message At Phase 3 (Wrong)
       }
       if(lowerUserInput == instruction4 && phase3 == true){
         setPhase4(true);
+        setDialogue("You Took The Knife From The Table Safely.")
+      }
+      if(phase4 && lowerUserInput !=instruction5){
+        //Message At Phase 4 (Wrong)
       }
       if(lowerUserInput == instruction5 && phase4 == true){
         setPhase5(true);
+        setDialogue("The Butter Is Now On The Knife.")
+      }
+      if(phase5 && lowerUserInput != instruction6){
+        //Message At Phase 5 (Wrong)
       }
       if(lowerUserInput == instruction6 && phase5 == true){
         setPhase6(true);
+        setDialogue("The Butter is Now On The Bread.")
+      }
+      if(phase6 && lowerUserInput != instruction7){
+        //Message At Phase 6 (Wrong)
       }
       if(lowerUserInput == instruction7 && phase6 == true){
         setPhase7(true);
+        setDialogue("You Ate The Peanut Butter Bread!You Won!")
         endScreen();
         setWon(true);
         clearInterval(interval.current)
