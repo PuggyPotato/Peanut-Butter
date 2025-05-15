@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {useEventListener} from "usehooks-ts";
 
 
@@ -28,6 +28,7 @@ function App(){
   const [shown,setShown] = useState(false);
   const [won,setWon] = useState(false);
   const interval = useRef(null);
+  const [lost,setLost] = useState(false);
 
   const instruction1 = "take the bread out of the bag";
   const instruction2 = "put the bread on the table";
@@ -83,10 +84,13 @@ function App(){
         else if(lowerUserInput == "eat"){
           setDialogue("You Ate The Table.You Lost.");
           setWon(false);
-          endScreen();
-
+          setLost(true);
+          clearInterval(interval.current);
+          setTimeout(() => {
+            endScreen();
+          }, 3000);
         }
-        else{
+        else{ 
           setDialogue("You Don't Know How To Do That ")
         }
       }
@@ -102,7 +106,11 @@ function App(){
         if(!phase1 && lowerUserInput == "eat"){
           setDialogue("You ate the Bread.You Lost.")
           setWon(false);
-          endScreen();
+          setLost(true);
+          clearInterval(interval.current);
+          setTimeout(() => {
+            endScreen();
+          }, 3000);
         }
         else{
           setDialogue("You Don't Know How To Do That.")
@@ -116,6 +124,15 @@ function App(){
 
       if(phase2 && lowerUserInput != instruction3){
         //Message At Phase 2 (Wrong)
+        if(lowerUserInput == "eat"){
+          setDialogue("You Ate The Bread.You Lost!")
+          setWon(false);
+          setLost(true);
+          clearInterval(interval.current);  
+          setTimeout(() => {
+            endScreen();
+          }, 3000);
+        }
       }
       if(lowerUserInput == instruction3 && phase2 == true){
         setPhase3(true);
@@ -123,13 +140,32 @@ function App(){
       }
       if(phase3 && lowerUserInput != instruction4){
         //Message At Phase 3 (Wrong)
+        if(lowerUserInput == "eat"){
+          setDialogue("You Ate The Peanut Butter. You Lost.");
+          setWon(false);
+          setLost(true);
+          clearInterval(interval.current);
+          setTimeout(() => {
+            endScreen();
+          }, 3000);
+        }
       }
+
       if(lowerUserInput == instruction4 && phase3 == true){
         setPhase4(true);
-        setDialogue("You Took The Knife From The Table Safely.")
+        setDialogue("You Took The Knife From The Table Safely.");
       }
       if(phase4 && lowerUserInput !=instruction5){
         //Message At Phase 4 (Wrong)
+        if(lowerUserInput == "eat"){
+          setDialogue("You Ate The Jar.You Lost.");
+          setWon(false);
+          setLost(true);
+          clearInterval(interval.current);
+          setTimeout(() => {
+            endScreen();
+          }, 3000);
+        }
       }
       if(lowerUserInput == instruction5 && phase4 == true){
         setPhase5(true);
@@ -137,6 +173,15 @@ function App(){
       }
       if(phase5 && lowerUserInput != instruction6){
         //Message At Phase 5 (Wrong)
+        if(lowerUserInput == "eat"){
+          setDialogue("You Ate The Knife.You Died.");
+          setWon(false);
+          setLost(true);
+          clearInterval(interval.current);
+          setTimeout(() => {
+            endScreen();
+          }, 3000);
+        }
       }
       if(lowerUserInput == instruction6 && phase5 == true){
         setPhase6(true);
@@ -148,9 +193,11 @@ function App(){
       if(lowerUserInput == instruction7 && phase6 == true){
         setPhase7(true);
         setDialogue("You Ate The Peanut Butter Bread!You Won!")
-        endScreen();
-        setWon(true);
-        clearInterval(interval.current)
+        setTimeout(() => {
+            endScreen();
+            setWon(true);
+            clearInterval(interval.current)
+        }, 3000);
       }
     }
     setUserInput("")
@@ -250,7 +297,7 @@ function App(){
               <div readOnly id="dialogue" className="typing-effect pointer-events-none absolute border-2 bottom-[0%] left-[0%] w-[100%] h-[100%] text-2xl px-2 py-1">
                 {dialogue}</div>
               <button 
-              className={`border-2 absolute bottom-2 right-2 ${userTurn ? "hidden" : ""} cursor-pointer`}
+              className={`border-2 absolute bottom-2 right-2 ${userTurn ? "hidden" : ""}  ${lost ? "hidden" : ""} cursor-pointer`}
               onClick={continueDialogue}>Click to Continue</button>
           </div>
           <div className="border-2 h-30 w-30 rounded-full absolute top-10 right-20">
