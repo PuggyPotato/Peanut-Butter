@@ -16,6 +16,19 @@ function App(){
                            "Narrator:You Need To Provide Instruction To Make The Peanut Butter Bread And Help Steve Eat It",
                            "Narrator:Every Random Command You Give Makes Him Starve More",
                            "Narrator:Remember....Provide Accurate Instructions..."];
+  const wrongInputResponses = [
+  "You try, but nothing happens.",
+  "That doesn't seem to work here.",
+  "Are you sure that's what you want to do?",
+  "Hmm. Try something else.",
+  "The room judges you silently.",
+  "You do that. Absolutely nothing changes.",
+  "Interesting. But not helpful.",
+  "You feel a chill. Maybe you're wasting time.",
+  "The voice in your head says: Try something more... logical.",
+  "You sense you're missing something obvious."
+];
+
   const [dialogue,setDialogue] = useState(openingDialogue[0]);
   const [timeLeft,setTimeLeft] = useState(60);
   const [phase1,setPhase1] = useState(false);
@@ -90,8 +103,9 @@ function App(){
             endScreen();
           }, 3000);
         }
-        else{ 
-          setDialogue("You Don't Know How To Do That ")
+        else{
+          const randomIndex = Math.floor(Math.random() * wrongInputResponses.length); 
+          setDialogue(wrongInputResponses[randomIndex]);
         }
       }
       //Correct Message At Phase 1
@@ -113,7 +127,8 @@ function App(){
           }, 3000);
         }
         else{
-          setDialogue("You Don't Know How To Do That.")
+          const randomIndex = Math.floor(Math.random() * wrongInputResponses.length); 
+          setDialogue(wrongInputResponses[randomIndex]);
         }
       }
 
