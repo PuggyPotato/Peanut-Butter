@@ -290,7 +290,7 @@ function App(){
             </div>
               }
         </div>
-        <div className="border-2 absolute top-10 left-[8%] w-[24%] h-[25%]">
+        <div className="border-2 absolute top-10 left-[8%] w-[30%] h-[27%]">
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase1}/>{phase1 ? instruction1 : "???? ??? ????? ??? ?? ??? ???"}</label><br/>
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase2}/>{phase2 ? instruction2 : "??? ??? ??? ?? ??? ?????"}</label><br/>
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase3}/>{phase3 ? instruction3 : "???? ??? ??? ?? ??? ?????? ??????"}</label><br/>
@@ -299,6 +299,9 @@ function App(){
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase6}/>{phase6 ? instruction6 : "?????? ??? ?????? ?? ??? ????? ???? ??? ?????"}</label><br/>
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
         </div>
+          <div className="w-8 h-8 border-0">
+            <img src="./steve.png" className="w-16 h-24 border-0 absolute top-[35%]"></img>
+          </div>
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
               <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 text-2xl px-2 overflow-y-hidden bg-slate-300 ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
                         value={userInput} onChange={(e) =>setUserInput(e.target.value)}

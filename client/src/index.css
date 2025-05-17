@@ -7,7 +7,14 @@
 
 @keyframes blink{
     50%{
-        color: gray;
+        color: rgb(82, 79, 79);
         border-color: black;
     }
+}
+
+html{
+    background-color: #E2C290;
+    font: bold;
+
+
 }
