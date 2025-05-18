@@ -275,16 +275,16 @@ function App(){
     <>
       <div className="flex justify-center items-center">
         <div className={`border-2 h-[80%] w-[80%] 
-                         absolute bg-slate-200 transition-all duration-500 
+                         absolute bg-[#FFD9C4] transition-all duration-500 
                          flex justify-center items-center
                          z-20 ${shown ? "top-10" : "-top-full"}`}>
             {won ? 
-            <div className="w-[100%] h-[100%]">
-              <h1 className="text-6xl">You Won With {timeLeft}s Left!</h1>
+            <div className="w-[100%] h-[100%] ">
+              <h1 className="text-6xl text-center">You Won With {timeLeft}s Left! Steve Is full And Happy!</h1>
               <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[43%] bg-green-600">Play Again!</button>
 
             </div> : 
-            <div>
+            <div className="text-center">
               <h1 className="text-6xl">You Lost!</h1>
               <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[43%] bg-green-600">Play Again!</button>
             </div>
@@ -300,10 +300,10 @@ function App(){
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
         </div>
           <div className="w-8 h-8 border-0">
-            <img src="./steve.png" className="w-16 h-24 border-0 absolute top-[35%]"></img>
+            <img src={`${ !phase7 ? "./steve.png" : ""} ${phase7 ? "./steveEating.png" : ""}`} className={`${!phase7? "w-18 h-26 bobbing": "w-20 h-25"} border-0 absolute top-[35%]`}></img>
           </div>
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
-              <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 text-2xl px-2 overflow-y-hidden bg-slate-300 ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
+              <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 text-2xl px-2 overflow-y-hidden bg-[#F8E8D2] ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
                         value={userInput} onChange={(e) =>setUserInput(e.target.value)}
                         placeholder="Enter Your Instructions..."
                         maxLength={300}>

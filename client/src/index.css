@@ -18,3 +18,12 @@ html{
 
 
 }
+
+.bobbing{
+    animation: bob 1s infinite ease-in-out;
+}
+
+@keyframes bob{
+    0%, 100% { top: 35.8% }
+    50%      { top: 36%; }
+}
