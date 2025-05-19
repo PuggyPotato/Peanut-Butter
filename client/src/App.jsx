@@ -275,7 +275,7 @@ function App(){
     <>
       <div className="flex justify-center items-center">
         <div className={`border-2 h-[80%] w-[80%] 
-                         absolute bg-[#FFD9C4] transition-all duration-500 
+                         absolute bg-[#FFFF00] transition-all duration-500 
                          flex justify-center items-center
                          z-20 ${shown ? "top-10" : "-top-full"}`}>
             {won ? 
@@ -299,8 +299,9 @@ function App(){
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase6}/>{phase6 ? instruction6 : "?????? ??? ?????? ?? ??? ????? ???? ??? ?????"}</label><br/>
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
         </div>
-          <div className="w-8 h-8 border-0">
+          <div className="w-0 border-0">
             <img src={`${ !phase7 ? "./steve.png" : ""} ${phase7 ? "./steveEating.png" : ""}`} className={`${!phase7? "w-18 h-26 bobbing": "w-20 h-25"} border-0 absolute top-[35%]`}></img>
+            <img src={`${!phase7 ? "./table1.png" : ""}`} className="border-0 absolute top-[36%] bobbing left-[55%] w-18 h-26 `"></img>
           </div>
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
               <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 text-2xl px-2 overflow-y-hidden bg-[#F8E8D2] ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
@@ -312,10 +313,10 @@ function App(){
               <button 
               className={`border-2 absolute bottom-2 right-2 ${userTurn ? "" : "hidden"} cursor-pointer`}
               onClick={submitInstruction}>Enter</button>
-              <div readOnly id="dialogue" className="typing-effect pointer-events-none absolute border-2 bottom-[0%] left-[0%] w-[100%] h-[100%] text-2xl px-2 py-1">
+              <div readOnly id="dialogue" className="typing-effect  pointer-events-none absolute border-2 bottom-[0%] left-[0%] w-[100%] h-[100%] text-2xl px-2 py-1">
                 {dialogue}</div>
               <button 
-              className={`border-2 absolute bottom-2 right-2 ${userTurn ? "hidden" : ""}  ${lost ? "hidden" : ""} cursor-pointer`}
+              className={` absolute bottom-2 right-2 ${userTurn ? "hidden" : ""}  ${lost ? "hidden" : ""} cursor-pointer `}
               onClick={continueDialogue}>Click to Continue</button>
           </div>
           <div className="border-2 h-30 w-30 rounded-full absolute top-10 right-20">
