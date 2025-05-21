@@ -118,7 +118,7 @@ function App(){
       if(phase1 && lowerUserInput != instruction2){
         //Message At Phase 1 (Wrong)
         if(!phase1 && lowerUserInput == "eat"){
-          setDialogue("You ate the Bread.You Lost.")
+          setDialogue("You ate the Bread.You Lost.");
           setWon(false);
           setLost(true);
           clearInterval(interval.current);
@@ -134,7 +134,7 @@ function App(){
 
       if(lowerUserInput == instruction2 && phase1 == true){
         setPhase2(true);
-        setDialogue("You put the bread on the table.")
+        setDialogue("You put the bread on the table.");
       }
 
       if(phase2 && lowerUserInput != instruction3){
@@ -184,7 +184,7 @@ function App(){
       }
       if(lowerUserInput == instruction5 && phase4 == true){
         setPhase5(true);
-        setDialogue("The Butter Is Now On The Knife.")
+        setDialogue("The Butter Is Now On The Knife.");
       }
       if(phase5 && lowerUserInput != instruction6){
         //Message At Phase 5 (Wrong)
@@ -200,18 +200,18 @@ function App(){
       }
       if(lowerUserInput == instruction6 && phase5 == true){
         setPhase6(true);
-        setDialogue("The Butter is Now On The Bread.")
+        setDialogue("The Butter is Now On The Bread.");
       }
       if(phase6 && lowerUserInput != instruction7){
         //Message At Phase 6 (Wrong)
       }
       if(lowerUserInput == instruction7 && phase6 == true){
         setPhase7(true);
-        setDialogue("You Ate The Peanut Butter Bread!You Won!")
+        setDialogue("You Ate The Peanut Butter Bread!You Won!");
         setTimeout(() => {
             endScreen();
             setWon(true);
-            clearInterval(interval.current)
+            clearInterval(interval.current);
         }, 3000);
       }
     }
@@ -223,7 +223,7 @@ function App(){
     if(event.key == "Enter"){
       if(dialogueCount <= 3 && userTurn == false){
         continueDialogue();
-        return
+        return;
       }
       if(userTurn == true){
       submitInstruction();
@@ -240,7 +240,7 @@ function App(){
     setDialogue("")
     console.log("TEST")
     let value = true;
-    setUserTurn(value)
+    setUserTurn(value);
   }
   
   function endScreen(){
@@ -252,16 +252,16 @@ function App(){
     let i = 0;
       interval.current = setInterval(() => {
       if(userInput == instruction7 && phase6 == true){
-        clearInterval(interval.current)
+        clearInterval(interval.current);
       }
-        i++
+        i++;
         setTimeLeft(60 - i);
         if(i == totalTime){
           clearInterval(interval.current);
           endScreen();
         }
         if(phase6 && userInput == instruction7){
-          clearInterval(interval.current)
+          clearInterval(interval.current);
         }
      }, 1000);
   
@@ -300,7 +300,7 @@ function App(){
           <label className="text-sm pt-10 accent-lime-300"><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
         </div>
           <div className="w-0 border-0">
-            <img src={`${ !phase1 || phase2 ? "./steve.png" : ""} ${phase1 && !phase2 ? "./stevephase1.png" : ""}`} className={`${!phase7? "w-18 h-26 bobbing": "w-20 h-25"} border-0 absolute top-[35%]`}></img>
+            <img src={`${ !phase1 || phase2 ? "./steve.png" : ""} ${phase1 && !phase2 ? "./stevephase1.png" : ""} ${phase3 && !phase4 ? "./phase3Table.png" : ""}`} className={`${!phase7? "w-18 h-26 bobbing": "w-20 h-25"} border-0 absolute top-[35%]`}></img>
             <img src={`${!phase1? "./phase0Table.png" : ""} ${phase1 && !phase2 ? "./phase1table.png" : ""} ${phase2 ? "phase2table.png" : ""}`} className="border-0 absolute top-[36%] bobbing left-[55%] w-18 h-26 `"></img>
           </div>
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
