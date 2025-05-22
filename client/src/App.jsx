@@ -31,6 +31,7 @@ function App(){
 
   const [dialogue,setDialogue] = useState(openingDialogue[0]);
   const [timeLeft,setTimeLeft] = useState(60);
+  const [phase0,setPhase0] = useState(true);
   const [phase1,setPhase1] = useState(false);
   const [phase2,setPhase2] = useState(false);
   const [phase3,setPhase3] = useState(false);
@@ -300,8 +301,8 @@ function App(){
           <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300 `}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
         </div>
           <div className="w-0 border-0">
-            <img src={`${ !phase1 || phase2 ? "./steve.png" : ""} ${phase1 && !phase2 ? "./stevephase1.png" : ""} ${phase3 && !phase4 ? "./phase3Table.png" : ""}`} className={`${!phase7? "md:w-18 xl:w-36 md:h-26 xl:h-48 bobbing": "md:w-20 md:h-25 xl:w-40 xl:h-50"} border-0 absolute top-[35%]`}></img>
-            <img src={`${!phase1? "./phase0Table.png" : ""} ${phase1 && !phase2 ? "./phase1table.png" : ""} ${phase2 ? "phase2table.png" : ""}`} className="border-0 absolute top-[36%] bobbing left-[55%] md:w-18 md:h-26 xl:w-36 xl:h-50 `"></img>
+            <img src={`${ (phase0 && !phase1) || (phase2 && !phase3) || (phase3 && !phase4)  ? "./steve.png" : ""} ${phase1 && !phase2 ? "./stevephase1.png" : ""}  ${phase4 && !phase5 ? "stevephase2.png" : ""}` } className={`${!phase7? "md:w-18 xl:w-36 md:h-26 xl:h-48 bobbing": "md:w-20 md:h-25 xl:w-40 xl:h-50"} border-0 absolute top-[35%]`}></img>
+            <img src={`${!phase1? "./phase0Table.png" : ""} ${phase1 && !phase2 ? "./phase1table.png" : ""} ${(phase2 && !phase3) ? "phase2table.png" : ""}`} className="border-0 absolute top-[36%] bobbing left-[55%] md:w-18 md:h-26 xl:w-36 xl:h-50 `"></img>
           </div>
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
               <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 md:text-2xl xl:text-6xl px-2 overflow-y-hidden bg-[#F8E8D2] ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
@@ -311,7 +312,7 @@ function App(){
 
               </textarea>
               <button 
-              className={`border-2 absolute bottom-2 right-2 ${userTurn ? "" : "hidden"} cursor-pointer`}
+              className={` absolute bottom-2 right-2 md:text-xl xl:text-4xl ${userTurn ? "" : "hidden"} cursor-pointer`}
               onClick={submitInstruction}>Enter</button>
               <div readOnly id="dialogue" className="typing-effect  pointer-events-none absolute border-2 bottom-[0%] left-[0%] w-[100%] h-[100%] md:text-2xl xl:text-6xl px-2 py-1">
                 {dialogue}</div>
@@ -321,7 +322,7 @@ function App(){
           </div>
           <div className="border-2 h-[20%] w-[10%] rounded-full absolute top-10 right-20">
               <img src="/clock.png" className="h-[100%] w-[100%] rounded-full"></img>
-              <p className={`absolute bottom-[-15%] right-[43%] text-xl ${timeLeft <= 10 && "text-red-600"}`}>{timeLeft}s</p>
+              <p className={`absolute bottom-[-15%] right-[38%] md:text-xl xl:text-4xl ${timeLeft <= 10 && "text-red-600"}`}>{timeLeft}s</p>
           </div>
       </div>
     </>
