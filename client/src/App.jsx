@@ -11,7 +11,7 @@ function App(){
   const [dialogueCount,setDialogueCount] = useState(0);
   const timeStarted = useRef(false);
   const [userTurn,setUserTurn] = useState(false);
-  const totalTime = 60;
+  const totalTime = 120;
   const openingDialogue = ["Steve:Im Starving.....I Wanna Eat.....",
                            "Narrator:You Need To Provide Instruction To Make The Peanut Butter Bread And Help Steve Eat It",
                            "Narrator:Every Random Command You Give Makes Him Starve More",
@@ -275,19 +275,19 @@ function App(){
   return(
     <>
       <div className="flex justify-center items-center">
-        <div className={`border-2 h-[80%] w-[80%] 
-                         absolute bg-[#FFFF00] transition-all duration-500 
+        <div className={`border-8 hover:shadow-2xl rounded-lg h-[80%] w-[80%] 
+                         absolute bg-gradient-to-l from-amber-600 via-pink-700 to-red-600 transition-all duration-500 
                          flex justify-center items-center
                          z-20 ${shown ? "top-10" : "-top-full"}`}>
             {won ? 
-            <div className="w-[100%] h-[100%] ">
-              <h1 className="text-6xl text-center">You Won With {timeLeft}s Left! Steve Is full And Happy!</h1>
-              <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[45%] bg-green-600">Play Again!</button>
+            <div className="w-[100%] h-[100%] flex justify-center items-center">
+              <h1 className="md:text-6xl xl:text-9xl text-center text-blue-300 font-black">You Won With {timeLeft}s Left!<br/> Steve Is full And Happy!</h1>
+              <button onClick={() => window.location.reload()} className="cursor-pointer border-2 md:text-3xl md:p-2 xl:text-7xl xl:p-5 rounded-lg absolute bottom-[10%] md:left-[45%] xl:left-[40%] bg-green-600">Play Again!</button>
 
             </div> : 
             <div className="text-center">
-              <h1 className="md:text-6xl xl:text-9xl">You Lost!</h1>
-              <button onClick={() => window.location.reload()} className="cursor-pointer border-2 text-3xl p-2 rounded-lg absolute bottom-[10%] left-[45%] bg-green-600">Play Again!</button>
+              <h1 className="md:text-6xl xl:text-9xl text-center text-blue-300 font-black">You Lost!</h1>
+              <button onClick={() => window.location.reload()} className="cursor-pointer border-2 md:text-3xl md:p-2 xl:text-7xl xl:p-5 rounded-lg absolute bottom-[10%] md:left-[45%] xl:left-[40%] bg-green-600">Play Again!</button>
             </div>
               }
         </div>
@@ -322,7 +322,7 @@ function App(){
           </div>
           <div className="border-2 h-[20%] w-[10%] rounded-full absolute top-10 right-20">
               <img src="/clock.png" className="h-[100%] w-[100%] rounded-full"></img>
-              <p className={`absolute bottom-[-15%] right-[38%] md:text-xl xl:text-4xl ${timeLeft <= 30 && "text-red-600"}`}>{timeLeft}s</p>
+              <p className={`absolute bottom-[-15%] right-[33%] md:text-xl xl:text-4xl ${timeLeft <= 30 && "text-red-600"}`}>{timeLeft}s</p>
           </div>
       </div>
     </>
