@@ -27,3 +27,67 @@ html{
     0%, 100% { top: 35.8% }
     50%      { top: 36%; }
 }
+
+.clock {
+  width: 200px;
+  height: 200px;
+  border: 8px solid white;
+  border-radius: 50%;
+  position: relative;
+  background: black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 
+    0 0 40px rgba(255, 255, 255, 0.1);  
+}
+
+.hand {
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0% 50%;
+  transform: rotate(90deg);
+}
+
+
+.minute {
+  width: 45%;
+  height: 3px;
+}
+
+.minuteAnimation{
+    animation: rotate-minute 3600s linear infinite;
+}
+
+.second {
+  background: red;
+  width: 50%;
+  height: 2px;
+}
+
+.secondAnimation{
+    animation: rotate-second 60s linear infinite;
+}
+
+.center-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+@keyframes rotate-minute {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-second {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

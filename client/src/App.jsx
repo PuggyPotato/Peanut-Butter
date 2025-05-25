@@ -320,9 +320,14 @@ function App(){
               className={` absolute bottom-2 right-2 md:text-xl xl:text-4xl ${userTurn ? "hidden" : ""}  ${lost ? "hidden" : ""} cursor-pointer `}
               onClick={continueDialogue}>Click to Continue</button>
           </div>
-          <div className="border-2 h-[20%] w-[10%] rounded-full absolute top-10 right-20">
+          <div className="border-0 h-[18%] w-[10%] rounded-full absolute top-10 right-20">
+                <div className="clock">
+                <div className={`${timeLeft <  120 ? "minuteAnimation" : ""} hand minute`}></div>
+                <div className={`hand second ${timeLeft < 120 ? "secondAnimation" : ""}`}></div>
+                <div className={`center-dot`}></div>
+              </div>
               <img src="/clock.png" className="h-[100%] w-[100%] rounded-full"></img>
-              <p className={`absolute bottom-[-15%] right-[33%] md:text-xl xl:text-4xl ${timeLeft <= 30 && "text-red-600"}`}>{timeLeft}s</p>
+              <p className={`absolute bottom-[0%] right-[48%] md:text-xl xl:text-4xl ${timeLeft <= 30 && "text-red-600"}`}>{timeLeft}s</p>
           </div>
       </div>
     </>
