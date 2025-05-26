@@ -274,6 +274,12 @@ function App(){
 
   return(
     <>
+        <div className="block sm:hidden">
+      <p className="text-center p-4 text-red-500">
+        This site is not supported on mobile devices.
+      </p>
+    </div>
+    <div className="hidden sm:block">
       <div className="flex justify-center items-center  ">
         <div className={`border-8 hover:shadow-2xl rounded-lg h-[80vh] w-[90vw] 
             absolute bg-gradient-to-l from-amber-600 via-pink-700 to-red-600 transition-all duration-500 
@@ -333,6 +339,7 @@ function App(){
               </div>
               <p className={`absolute left-[48vw] xl:text-5xl ${timeLeft <= 30 && "text-red-600"}`}>{timeLeft}s</p>
           </div>
+      </div>
       </div>
     </>
   )
