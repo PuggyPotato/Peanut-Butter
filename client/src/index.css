@@ -29,8 +29,7 @@ html{
 }
 
 .clock {
-  width: 200px;
-  height: 200px;
+
   border: 8px solid white;
   border-radius: 50%;
   position: relative;

@@ -291,18 +291,22 @@ function App(){
             </div>
               }
         </div>
-        <div className="border-2 absolute top-10 left-[8%] w-[30%] h-[27%] text-5xl">
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase1}/>{phase1 ? instruction1 : "???? ??? ????? ??? ?? ??? ???"}</label><br/>
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase2}/>{phase2 ? instruction2 : "??? ??? ??? ?? ??? ?????"}</label><br/>
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase3}/>{phase3 ? instruction3 : "???? ??? ??? ?? ??? ?????? ??????"}</label><br/>
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase4}/>{phase4 ? instruction4 : "???? ??? ????? ???? ??? ????? ???? ??? ????"}</label><br/>
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase5}/>{phase5 ? instruction5 : "??? ??? ????? ?? ????? ??? ?????? ?????? ???? ??? ???"}</label><br/>
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase6}/>{phase6 ? instruction6 : "?????? ??? ?????? ?? ??? ????? ???? ??? ?????"}</label><br/>
-          <label className={`md:text-sm xl:text-2xl pt-10 accent-lime-300 `}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
+        <div className="border-2 absolute top-10 
+        sm:left-[6rem] sm:w-[10em] sm:h-[5em]
+        md:left-[6rem] md:w-[35em] md:h-[30em] md:text-sm  
+        xl:text-5xl 
+        xl:left-[13rem] 2xl:w-[15em] 2xl:h-[8em] 2xl:text-6xl ">
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase1}/>{phase1 ? instruction1 : "???? ??? ????? ??? ?? ??? ???"}</label><br/>
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase2}/>{phase2 ? instruction2 : "??? ??? ??? ?? ??? ?????"}</label><br/>
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase3}/>{phase3 ? instruction3 : "???? ??? ??? ?? ??? ?????? ??????"}</label><br/>
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase4}/>{phase4 ? instruction4 : "???? ??? ????? ???? ??? ????? ???? ??? ????"}</label><br/>
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase5}/>{phase5 ? instruction5 : "??? ??? ????? ?? ????? ??? ?????? ?????? ???? ??? ???"}</label><br/>
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300`}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase6}/>{phase6 ? instruction6 : "?????? ??? ?????? ?? ??? ????? ???? ??? ?????"}</label><br/>
+          <label className={`sm:text-xs md:text-2xl xl:text-md 2xl:text-2xl xl:pt-10 md:pt-5 accent-lime-300 `}><input type="checkbox" readOnly className="mx-2 pointer-events-none" checked={phase7}/>{phase7 ? instruction7 : "???"}</label>
         </div>
           <div className="w-0 border-0">
             <img src={`${ (phase0 && !phase1) || (phase2 && !phase3) || (phase3 && !phase4)  ? "./steve.png" : ""} ${phase1 && !phase2 ? "./stevephase1.png" : ""}  ${phase4 && !phase5 ? "stevephase2.png" : ""} ${phase5 && !phase6 ? "./stevephase5.png" : "" } ${phase6 && !phase7 ? "./stevephase2.png" : "" } ${phase7 ? "steveEating.png" : ""}`  } className={`${!phase7? "md:w-18 xl:w-36 md:h-26 xl:h-48 bobbing": "md:w-20 md:h-25 xl:w-40 xl:h-50"} border-0 absolute top-[35%]`}></img>
-            <img src={`${!phase1? "./phase0Table.png" : ""} ${phase1 && !phase2 ? "./phase1table.png" : ""} ${(phase2 && !phase3) ? "phase2table.png" : ""} ${phase3 && !phase4 ? "./phase3table.png" :""} ${phase4 && !phase5 ? "./phase4table.png" :""} ${phase5 && !phase6 ? "./phase4table.png" :""} ${phase6 && !phase7 ? "phase6table.png" : ""} ${phase7 ? "phase7table.png" : ""}`} className="border-0 absolute top-[36%] bobbing left-[55%] md:w-18 md:h-26 xl:w-36 xl:h-50 `"></img>
+            <img src={`${!phase1? "/phase0Table.png" : ""} ${phase1 && !phase2 ? "./phase1table.png" : ""} ${(phase2 && !phase3) ? "phase2table.png" : ""} ${phase3 && !phase4 ? "./phase3table.png" :""} ${phase4 && !phase5 ? "./phase4table.png" :""} ${phase5 && !phase6 ? "./phase4table.png" :""} ${phase6 && !phase7 ? "phase6table.png" : ""} ${phase7 ? "phase7table.png" : ""}`} className="border-0 absolute top-[36%] bobbing left-[55%] md:w-18 md:h-26 xl:w-36 xl:h-50 `"></img>
           </div>
           <div id="dialogueBox" className="border-2 w-[85%] h-[30%] absolute bottom-[10%] left-[8%] rounded-lg">
               <textarea className={`border-2 w-[100%] h-[100%] rounded-lg px-1 md:text-2xl xl:text-6xl px-2 overflow-y-hidden bg-[#F8E8D2] ${userTurn ? "" : "pointer-events-none hidden"}`} readOnly={userTurn ? false:true}
@@ -314,14 +318,14 @@ function App(){
               <button 
               className={` absolute bottom-2 right-2 md:text-xl xl:text-4xl ${userTurn ? "" : "hidden"} cursor-pointer`}
               onClick={submitInstruction}>Enter</button>
-              <div readOnly id="dialogue" className="typing-effect  pointer-events-none absolute border-2 bottom-[0%] left-[0%] w-[100%] h-[100%] md:text-2xl xl:text-6xl px-2 py-1">
+              <div readOnly id="dialogue" className="typing-effect  pointer-events-none absolute border-2 bottom-[0%] left-[0%] w-[100%] h-[100%] md:text-2xl xl:text-4xl 2xl:text-6xl px-2 py-1">
                 {dialogue}</div>
               <button 
               className={` absolute bottom-2 right-2 md:text-xl xl:text-4xl ${userTurn ? "hidden" : ""}  ${lost ? "hidden" : ""} cursor-pointer `}
               onClick={continueDialogue}>Click to Continue</button>
           </div>
           <div className="border-0 h-[18%] w-[10%] rounded-full absolute top-10 right-20">
-                <div className="clock">
+                <div className="clock w-2">
                 <div className={`${timeLeft <  120 ? "minuteAnimation" : ""} hand minute`}></div>
                 <div className={`hand second ${timeLeft < 120 ? "secondAnimation" : ""}`}></div>
                 <div className={`center-dot`}></div>
